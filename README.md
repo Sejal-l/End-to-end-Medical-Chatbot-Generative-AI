@@ -27,3 +27,19 @@ conda activate medibot
 ```bash
 pip install -r requirements.txt
 ```
+#run the following command to store embeddings to pinecore
+```bash
+Python store_index.py
+```
+
+#finally run the following command
+```bash
+Python app.py
+```
+
+###Techstack Used
+-Python
+-LangChain
+-Flask
+-Pinecone
+-Google gemini 2.5
