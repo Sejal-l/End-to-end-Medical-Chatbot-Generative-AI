@@ -1,0 +1,825 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at 10% 10%, rgba(250, 249, 250, 0.25), transparent 30%),
+        radial-gradient(circle at 90% 90%, rgba(248, 247, 249, 0.25), transparent 30%),
+        linear-gradient(135deg, #9475a2, #a080b0, #967da3);
+
+    color: #e5edf8;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   MAIN PAGE
+===================================================== */
+
+.page-wrapper {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+}
+
+
+/* =====================================================
+   CHAT CARD
+===================================================== */
+
+.chat-card {
+    width: 100%;
+    max-width: 1250px;
+    height: 94vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: rgba(9, 22, 40, 0.94);
+
+    border: 1px solid rgba(148, 163, 184, 0.18);
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    backdrop-filter: blur(20px);
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.chat-header {
+    height: 105px;
+
+    padding: 18px 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(18, 45, 75, 0.98),
+            rgba(12, 30, 52, 0.98)
+        );
+
+    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+
+/* Doctor section */
+
+.doctor-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+
+/* =====================================================
+   DOCTOR IMAGE
+===================================================== */
+
+.doctor-image-wrapper {
+    width: 68px;
+    height: 68px;
+
+    position: relative;
+
+    border-radius: 50%;
+
+    padding: 3px;
+
+    background: linear-gradient(
+        135deg,
+        #38bdf8,
+        #2563eb
+    );
+
+    box-shadow:
+        0 8px 25px rgba(37, 99, 235, 0.35);
+}
+
+
+.doctor-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    display: block;
+
+    background: #e2e8f0;
+}
+
+
+/* Online dot */
+
+.online-dot {
+    position: absolute;
+
+    width: 15px;
+    height: 15px;
+
+    right: 1px;
+    bottom: 3px;
+
+    background: #22c55e;
+
+    border: 3px solid #0c1e34;
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.7);
+}
+
+
+/* =====================================================
+   HEADER TEXT
+===================================================== */
+
+.doctor-info h2 {
+    margin: 0;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    color: #f8fafc;
+}
+
+
+.doctor-info p {
+    margin: 6px 0 0;
+
+    font-size: 13px;
+
+    color: #94a3b8;
+}
+
+
+.status-dot {
+    display: inline-block;
+
+    width: 8px;
+    height: 8px;
+
+    margin-right: 5px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow: 0 0 8px #22c55e;
+}
+
+
+/* =====================================================
+   HEADER BUTTONS
+===================================================== */
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+
+.header-btn {
+    width: 48px;
+    height: 48px;
+
+    border: 1px solid rgba(148, 163, 184, 0.2);
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: #dbeafe;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+
+.header-btn:hover {
+    background: #2563eb;
+
+    border-color: #3b82f6;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+
+.delete-btn:hover {
+    background: #dc2626;
+
+    border-color: #ef4444;
+
+    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+}
+
+
+/* =====================================================
+   CHAT BODY
+===================================================== */
+
+.chat-body {
+    flex: 1;
+
+    padding: 35px 45px;
+
+    overflow-y: auto;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(30, 64, 175, 0.08),
+            transparent 45%
+        );
+
+    scroll-behavior: smooth;
+}
+
+
+/* Scrollbar */
+
+.chat-body::-webkit-scrollbar {
+    width: 7px;
+}
+
+.chat-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+    background: rgba(100, 116, 139, 0.4);
+    border-radius: 10px;
+}
+
+
+/* =====================================================
+   MESSAGE ROW
+===================================================== */
+
+.message-row {
+    display: flex;
+
+    gap: 12px;
+
+    margin-bottom: 28px;
+
+    animation: messageAppear 0.3s ease;
+}
+
+
+@keyframes messageAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   AVATAR
+===================================================== */
+
+.assistant-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #38bdf8;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+}
+
+
+.bot-avatar {
+    color: #60a5fa;
+
+    background: rgba(37, 99, 235, 0.15);
+
+    border: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+
+.user-avatar {
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+}
+
+
+/* =====================================================
+   MESSAGE CONTENT
+===================================================== */
+
+.message-content {
+    max-width: 75%;
+}
+
+
+.user-content {
+    text-align: right;
+    margin-left: auto;
+}
+
+
+.message-name {
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #94a3b8;
+
+    margin: 0 0 7px 2px;
+}
+
+
+.user-name {
+    margin-right: 3px;
+}
+
+
+.message {
+    display: inline-block;
+
+    padding: 14px 18px;
+
+    border-radius: 18px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    word-wrap: break-word;
+}
+
+
+/* Bot */
+
+.bot-message {
+    color: #dbeafe;
+
+    background: linear-gradient(
+        135deg,
+        rgba(30, 64, 175, 0.35),
+        rgba(15, 23, 42, 0.9)
+    );
+
+    border: 1px solid rgba(96, 165, 250, 0.18);
+
+    border-top-left-radius: 5px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* User */
+
+.user-message {
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    border-top-right-radius: 5px;
+
+    box-shadow:
+        0 8px 25px rgba(37, 99, 235, 0.25);
+}
+
+
+/* Time */
+
+.message-time {
+    font-size: 10px;
+
+    color: #64748b;
+
+    margin-top: 7px;
+}
+
+
+.user-time {
+    text-align: right;
+}
+
+
+/* =====================================================
+   TYPING INDICATOR
+===================================================== */
+
+.typing-message {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 15px 18px;
+
+    width: 65px;
+
+    border-radius: 18px;
+
+    border-top-left-radius: 5px;
+
+    background: rgba(30, 64, 175, 0.3);
+}
+
+
+.typing-message span {
+    width: 7px;
+    height: 7px;
+
+    background: #60a5fa;
+
+    border-radius: 50%;
+
+    animation: typing 1.3s infinite;
+}
+
+
+.typing-message span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+
+.typing-message span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+
+@keyframes typing {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+
+    30% {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
+
+}
+
+
+/* =====================================================
+   SUGGESTIONS
+===================================================== */
+
+.suggestions-section {
+    display: flex;
+
+    gap: 10px;
+
+    padding: 14px 35px;
+
+    border-top: 1px solid rgba(148, 163, 184, 0.12);
+
+    background: rgba(15, 30, 50, 0.8);
+
+    overflow-x: auto;
+}
+
+
+.suggestion {
+    white-space: nowrap;
+
+    padding: 10px 16px;
+
+    border-radius: 25px;
+
+    border: 1px solid rgba(96, 165, 250, 0.25);
+
+    background: rgba(37, 99, 235, 0.08);
+
+    color: #a8c7ef;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+
+.suggestion i {
+    margin-right: 7px;
+
+    color: #60a5fa;
+}
+
+
+.suggestion:hover {
+    color: white;
+
+    background: #2563eb;
+
+    border-color: #3b82f6;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.25);
+}
+
+
+/* =====================================================
+   INPUT SECTION
+===================================================== */
+
+.input-section {
+    padding: 18px 30px 16px;
+
+    background: #08182b;
+
+    border-top: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+
+/* Input */
+
+.input-wrapper {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 5px;
+
+    border-radius: 18px;
+
+    background: #101f34;
+
+    border: 1px solid rgba(148, 163, 184, 0.18);
+
+    transition: all 0.25s ease;
+}
+
+
+.input-wrapper:focus-within {
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+
+.message-input {
+    flex: 1;
+
+    height: 52px;
+
+    padding: 0 17px;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #f1f5f9;
+
+    font-size: 14px;
+
+    font-family: inherit;
+}
+
+
+.message-input::placeholder {
+    color: #64748b;
+}
+
+
+/* Send */
+
+.send-button {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    color: white;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    box-shadow:
+        0 7px 18px rgba(37, 99, 235, 0.3);
+}
+
+
+.send-button:hover {
+    transform: translateY(-2px) scale(1.03);
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.45);
+}
+
+
+.send-button:active {
+    transform: scale(0.95);
+}
+
+
+/* =====================================================
+   DISCLAIMER
+===================================================== */
+
+.disclaimer {
+    text-align: center;
+
+    margin-top: 10px;
+
+    font-size: 10px;
+
+    color: #64748b;
+}
+
+
+.disclaimer i {
+    color: #38bdf8;
+
+    margin-right: 5px;
+}
+
+
+/* =====================================================
+   EMPTY CHAT
+===================================================== */
+
+.empty-chat {
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+.empty-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    color: #60a5fa;
+
+    background: rgba(37, 99, 235, 0.12);
+
+    font-size: 26px;
+
+    margin-bottom: 15px;
+}
+
+
+.empty-chat h3 {
+    color: #e2e8f0;
+
+    font-size: 18px;
+
+    margin-bottom: 8px;
+}
+
+
+.empty-chat p {
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .page-wrapper {
+        padding: 0;
+    }
+
+    .chat-card {
+        height: 100vh;
+
+        border-radius: 0;
+    }
+
+    .chat-header {
+        height: 85px;
+
+        padding: 14px 16px;
+    }
+
+    .doctor-image-wrapper {
+        width: 52px;
+        height: 52px;
+    }
+
+    .doctor-info h2 {
+        font-size: 17px;
+    }
+
+    .doctor-info p {
+        font-size: 11px;
+    }
+
+    .header-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .chat-body {
+        padding: 25px 16px;
+    }
+
+    .message-content {
+        max-width: 82%;
+    }
+
+    .suggestions-section {
+        padding: 10px 15px;
+    }
+
+    .input-section {
+        padding: 12px 15px;
+    }
+
+}
